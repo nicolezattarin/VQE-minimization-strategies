@@ -17,4 +17,4 @@ The configuration is repeated for a different number of layers and the input par
 <img src="4q.png"  width="500" /> <img src="6q.png"  width="500" />
 
 
-
+Note: simulation performed on Galileo (1 cpu per task)
