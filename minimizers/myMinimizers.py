@@ -159,8 +159,6 @@ def GAOptimizer(loss, InParams, args, options={'PopSize':100,
     toolbox.register("mate", tools.cxOnePoint)
     toolbox.register("mutate", tools.mutFlipBit, indpb=0.25)
     toolbox.register("select", tools.selTournament, tournsize=3)
-
-    #probability of crossover and mutation is assigned randomly
     
     POP_SIZE = options['PopSize']
     NGEN = options['MaxGen']
