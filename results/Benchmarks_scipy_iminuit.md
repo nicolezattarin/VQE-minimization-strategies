@@ -14,8 +14,8 @@ We benchmarked different minimization algorithm taken from [scipy.optimize.minim
 The configuration is repeated for a different number of layers and the input parameters are chosen randomly from 0 to 2pi in all benchmarks.
 
 
-<img src="4q.png"  width="500" /> <img src="6q.png"  width="500" />
-
-<img src="8q.png"  width="500" /> 
+<img src="4q.png"  width="700" /> 
+<img src="6q.png"  width="700" />
+<img src="8q.png"  width="700" /> 
 
 Note: simulation performed on Galileo (1 cpu per task)
