@@ -134,13 +134,13 @@ def main(nTrials, optimization, nqubits, nlayers):
                                     directions=["minimize", "maximize"],
                                     sampler=samplers.RandomSampler(),
                                     pruner=pruners.MedianPruner())
-        study.optimize(lambda trial: objective(trial, nqubits, nlayers),
+        study.optimize(lambda trial: objectiveGenetic(trial, nqubits, nlayers),
                                      n_trials=100, show_progress_bar=True)
 
     else:
         study = optuna.create_study(study_name="VQEBestSetup",sampler=samplers.RandomSampler(),
                                     pruner=pruners.MedianPruner(), directions=["minimize", "maximize"])
-        study.optimize(objective, n_trials=nTrials, show_progress_bar=True)
+        study.optimize(objectiveSetup, n_trials=nTrials, show_progress_bar=True)
         
     # random sampling, prune if the trial’s best intermediate result is worse than median of
     # intermediate results of previous trials at the same step.
