@@ -13,9 +13,16 @@ We benchmarked different minimization algorithm taken from [scipy.optimize.minim
 
 The configuration is repeated for a different number of layers and the input parameters are chosen randomly from 0 to 2pi in all benchmarks.
 
+Simulation with 4 qubits circuit:
+<img src="4q.png"  width="700" class="center"/> 
 
-<img src="4q.png"  width="700" /> 
-<img src="6q.png"  width="700" />
-<img src="8q.png"  width="700" /> 
 
+Simulation with 6 qubits circuit:
+<img src="6q.png"  width="700" class="center"/>
+
+Simulation with 8 qubits circuit:
+<img src="8q.png"  width="700" class="center"/> 
+
+
+Accuracy is plotted with the same limits on y axis in order to better compare different number of qubits circuits. 
 Note: simulation performed on Galileo (1 cpu per task)
