@@ -88,7 +88,7 @@ def objectiveSetup(trial):
     """
 
     nqubits = trial.suggest_int("nqubits", 2, 10, step=2)
-    nlayers = trial.suggest_int("nlayers", 0, 10)
+    nlayers = trial.suggest_int("nlayers", 1, 10)
     method = trial.suggest_categorical("method",
                                         ["L-BFGS-B","Nelder-Mead",
                                         "Powell","BFGS","SLSQP",
