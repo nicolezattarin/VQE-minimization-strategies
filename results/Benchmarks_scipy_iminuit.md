@@ -30,3 +30,9 @@ Simulation with 8 qubits circuit:
 
 Accuracy is plotted with the same limits on y axis in order to better compare different number of qubits circuits. 
 Note: simulation performed on Galileo (1 cpu per task)
+
+work in progress:
+  - hyperopt nlayers-nqubits
+  - hyperopt genetic with best nlayers-nqubits
+  - test genetic and cma
+  - hyperopt
