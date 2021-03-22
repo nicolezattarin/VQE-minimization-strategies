@@ -1,4 +1,5 @@
 # Benchmarks
+
 ## Scipy and iMinuit minimizers 
 
 Consider a variational circuit where every layer is made up by RY rotations followed by a layer of CZ gates in order to entangle the qubits, as shown in this figure: 
@@ -30,6 +31,13 @@ Simulation with 8 qubits circuit:
 
 Accuracy is plotted with the same limits on y axis in order to better compare different number of qubits circuits. 
 Note: simulation performed on Galileo (1 cpu per task)
+
+
+## Error due to different seed
+When we find the ground state the initial parameters of the optimization are a (2 * nQubits * nLayers + nQubits) dimensions array of random values extracted uniformly in (0, 2pi). Repeating the same simulation with different seeds we observe oscillations, as shown in these plots:
+
+<img src="BFGS_error.png"  width="500"/>  <img src="SLSQP_error.png"  width="500"/> 
+
 
 work in progress:
   - hyperopt nlayers-nqubits
