@@ -36,8 +36,8 @@ Note: simulation performed on Galileo (1 cpu per task)
 ## Error due to different seeds
 When we find the ground state the initial parameters of the optimization are a (2 * nQubits * nLayers + nQubits) dimensions array of random values extracted uniformly in (0, 2pi). Repeating the same simulation with different seeds we observe oscillations, as shown in these plots:
 
-<img src="BFGS_error.png"  width="500"/>  <img src="SLSQP_error.png"  width="500"/> 
-
+<img src="4qBFGS_error.png"  width="500"/>  <img src="4qSLSQP_error.png"  width="500"/> 
+<img src="4qmigrad_error.png"  width="500" class="center"/> 
 
 work in progress:
   - hyperopt nlayers-nqubits
