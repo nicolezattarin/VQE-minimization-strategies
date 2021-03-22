@@ -44,3 +44,10 @@ work in progress:
   - hyperopt genetic with best nlayers-nqubits
   - test genetic and cma
   - hyperopt
+
+Questions:
+  - optuna viz
+  - galileo illegal instructions
+  - hyperparams space dim
+  - genetic setup
+  - nqubits nlayers genetic
