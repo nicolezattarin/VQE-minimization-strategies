@@ -39,6 +39,9 @@ When we find the ground state the initial parameters of the optimization are a (
 <img src="4qBFGS_error.png"  width="500"/>  <img src="4qSLSQP_error.png"  width="500"/> 
 <img src="4qmigrad_error.png"  width="500" class="center"/> 
 
+(run on my own machine, previous tests shown that this doesn't affect accuracy)
+
+
 work in progress:
   - hyperopt nlayers-nqubits
   - hyperopt genetic with best nlayers-nqubits
