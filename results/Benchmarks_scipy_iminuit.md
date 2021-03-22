@@ -39,7 +39,9 @@ When we find the ground state the initial parameters of the optimization are a (
 <img src="4qBFGS_error.png"  width="500"/>  <img src="4qSLSQP_error.png"  width="500"/> 
 <img src="4qmigrad_error.png"  width="500"/>  <img src="4qtrust-constr_error.png"  width="500"/> 
 
-(run on my own machine, previous tests shown that this doesn't affect accuracy)
+It's possible to observe that trust-constr, that is the most accurate algorithm tested for a 4 qubits circuit, is also the less affected by seed change.
+
+(runned on my own machine, previous tests shown that this doesn't affect accuracy)
 
 
 work in progress:
