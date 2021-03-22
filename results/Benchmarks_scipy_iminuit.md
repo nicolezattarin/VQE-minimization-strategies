@@ -36,10 +36,10 @@ Note: simulation performed on Galileo (1 cpu per task)
 ## Error due to different seeds
 When we find the ground state, the initial parameters of the optimization are stored in a (2 * nQubits * nLayers + nQubits) dimensions array of random values extracted uniformly in (0, 2pi). Repeating the same simulation with different seeds we observe the oscillations shown in these plots:
 
-<img src="4qtrust-constr_error.png"  width="600"/>  <img src="4qBFGS_error.png"  width="600"/>  
-<img src="4qL-BFGS-B_error.png"  width="600"/> <img src="4qNelder-Mead_error.png"  width="600"/>
-<img src="4qSLSQP_error.png"  width="600"/>  <img src="4qmigrad_error.png"  width="600"/>  
- <img src="4qPowell_error.png"  width="600"/>  <img src="4qCOBYLA_error.png"  width="600"/> 
+<img src="4qtrust-constr_error.png"  width="550"/>  <img src="4qBFGS_error.png"  width="550"/>  
+<img src="4qL-BFGS-B_error.png"  width="550"/> <img src="4qNelder-Mead_error.png"  width="550"/>
+<img src="4qSLSQP_error.png"  width="550"/>  <img src="4qmigrad_error.png"  width="550"/>  
+ <img src="4qPowell_error.png"  width="550"/>  <img src="4qCOBYLA_error.png"  width="550"/> 
 
 It's possible to observe that trust-constr, that is the most accurate algorithm tested for a 4 qubits circuit, is also the less affected by seed change.
 
