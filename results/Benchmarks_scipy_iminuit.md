@@ -52,9 +52,3 @@ work in progress:
   - test genetic and cma
   - hyperopt more general
 
-Questions:
-  - optuna viz
-  - galileo illegal instructions and best cpu per task
-  - hyperparams space dim
-  - genetic setup
-  - nqubits nlayers genetic
