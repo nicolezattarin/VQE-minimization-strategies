@@ -15,48 +15,59 @@ class AAVQE(StateEvolution):
  algorithm.
     Args:
         - circuit (:class:`qibo.abstractions.circuit.AbstractCircuit`): The variaional ansatz.
-        - starting_hamiltonian (:class:`qibo.hamiltonians.Hamiltonian`): easy hamiltonian.
-        - final_hamiltonian (:class:`qibo.hamiltonians.Hamiltonian`): problem hamiltonian.
+        - in_hamiltonian (:class:`qibo.hamiltonians.Hamiltonian`): easy hamiltonian.
+        - fin_hamiltonian (:class:`qibo.hamiltonians.Hamiltonian`): problem hamiltonian.
         - scheduling_func (callable): Function of time that defines the scheduling of the
             adiabatic evolution. Note that in this implmentation parameterized scheeduling
             fucntions are not allowd.
         - dt (float): Time step to use for the numerical integration of
             Schrondiger's equation.
         - total time (float): total time of time evolution.
-        - callbacks
-        - accelerators
-        - memory_device
 
     """
-    def __init__(self, circuit, starting_hamiltonian,
-                       final_hamiltonian, scheduling_func,
-                       dt, total_time,  callbacks=[],
-                       accelerators=None, memory_device="/CPU:0"):
+    def __init__(self, circuit, in_hamiltonian,
+                       fin_hamiltonian, scheduling_func,
+                       dt, total_time):
         
-        if not issubclass(type(starting_hamiltonian), hamiltonians.HAMILTONIAN_TYPES):
+        if not issubclass(type(in_hamiltonian), hamiltonians.HAMILTONIAN_TYPES):
             raise_error(TypeError, "h0 should be a hamiltonians.Hamiltonian "
-                                  "object but is {}.".format(type(starting_hamiltonian)))
-        if type(final_hamiltonian) != type(starting_hamiltonian):
+                                  "object but is {}.".format(type(in_hamiltonian)))
+        if type(fin_hamiltonian) != type(in_hamiltonian):
             raise_error(TypeError, "h1 should be of the same type {} of starting hamiltonian but "
-                                   "is {}.".format(type(starting_hamiltonian), type(final_hamiltonian)))
-        if starting_hamiltonian.nqubits != final_hamiltonian.nqubits:
+                                   "is {}.".format(type(in_hamiltonian), type(fin_hamiltonian)))
+        if in_hamiltonian.nqubits != fin_hamiltonian.nqubits:
             raise_error(ValueError, "H0 has {} qubits while final hamiltonian has {}."
-                                    "".format(starting_hamiltonian.nqubits, final_hamiltonian.nqubits))
-
-                                                 
+                                    "".format(in_hamiltonian.nqubits, fin_hamiltonian.nqubits))
+                
         self.circuit = circuit
-        self._h0 = starting_hamiltonian
-        self._hf = final_hamiltonian
+        self._h0 = in_hamiltonian
+        self._hf = fin_hamiltonian
         self._dt = dt
         self._T = total_time
-
+                
+        self._schedule = None
+        self._param_schedule = None
         nparams = scheduling_func.__code__.co_argcount
+
         if not nparams == 1:
-            raise_error(ValueError,"Scheduling function must have one argument,"
+            raise_error(ValueError,"Scheduling function takes one argument,"
                                    "but {} were provided.".format(nparams))
+        
         self._schedule = scheduling_func
-        
-        
+
+
+   
+    def set_SchedulingFunction(self, func):
+        """ Set scheduling function as func. """
+        ATOL = 1e-7 # Tolerance for boundary condittions.
+        s0 = func(0)
+        if np.abs(s0) > self.ATOL:
+            raise_error(ValueError, func"s(0) should be 0 but is {s0}.")
+        s1 = func(1)
+        if np.abs(s1 - 1) > self.ATOL:
+            raise_error(ValueError, func"s(1) should be 1 but is {s1}.")
+        self._schedule = func
+
     def Hamiltonian(self, t):
         """
         Args:
@@ -69,13 +80,18 @@ class AAVQE(StateEvolution):
     
     def SchedulingFunction(self, t):
         """
-        Args:
-            - t: time
+        Args
+            t: time
         Returns scheduling function evaluated at time t s(t/total_time).
         """
         # returns value of scheduling function at time t
         return self._schedule(t / self._T)
-        
+
+    def SchedulingFunction(self):
+        """ Returns scheduling function as a function of time. """
+        if self._schedule is None:
+            raise_error(ValueError, " Scheduling function is not defined.")
+        return self._schedule
         
     def minimize(self, params, method="trust-constr", options=None):
         """
@@ -87,8 +103,6 @@ class AAVQE(StateEvolution):
                             for 4-8 qubits circuits.
             - options (dictionary): additional settings.
         """
-        # setup logger
-        logging.basicConfig(level=logging.NOTSET)
         
         # We first create a Hamiltonian suited for adiabatic evolution:
         # H = ( 1 - s(t) ) h0 + s(t) hf
@@ -109,9 +123,12 @@ class AAVQE(StateEvolution):
             vqe = models.VQE(self.circuit, H)
             best, finparams = vqe.minimize(inparams, method=method,
                                             options=options, compile=False)
-            
+               
+            # setup logger
+            logging.basicConfig(level=logging.NOTSET)
             logging.info("Time "+ str(t)+ " terminated with value "+ str(best)+
                          "\n\t  scheduling function "+str(s) + "\nparams \n"+ str(finparams))
+
             # update
             t+=self._dt
             s=self.SchedulingFunction(t)

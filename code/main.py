@@ -20,6 +20,8 @@ parser.add_argument("--varlayer", default=False, help="Use VariationalLayer gate
 parser.add_argument("--method", default="Powell", help="Method of minimization.", type=str)
 parser.add_argument("--seed", default=0, help="seed for initial parameters.", type=int)
 parser.add_argument("--ntrials", default=10000, help="trials for hyperopt minimization.", type=int)
+parser.add_argument("--aavqe", default=False, help="If True AAVQE optimization is done, else VQE.", type=bool)
+
 
 
 
@@ -30,7 +32,8 @@ def main  (nqubits,
            varlayer,
            method,
            seed,
-           ntrials):
+           ntrials,
+           aavqe):
     """
     Creates a file: "dir/method-nqubits-qubits.txt"
        nsteps number of points (time, accuracy) starting from startnlayers, step=1
@@ -44,31 +47,37 @@ def main  (nqubits,
        - varlayer (bool): if True variational ansants
                           is created using VariationalLayer.
        - method (str): methods of minimization.
+       - seed (int): seed for random parameters.
+       - ntrials (int): number of trials for hyperopt optimization.
+       - aavqe (bool): if True AAVQE optimization is done, else VQE.
     """
     
     Depth=np.arange(startnlayers,startnlayers+nstep)
     time = np.zeros(nstep)
     accuracy = np.zeros(nstep)
         
-    if method == "aavqe":
+    if aavqe:
         for i in range(nstep):
             # here i set the best iter/T as results from testing accuracy-time vs iterations
             iter=10
             T=1
-            aavqe_method="COBYLA"
-            time[i], accuracy[i], = AAVQESimulation(nqubits, Depth[i], iter, T, seed, aavqe_method)
+            time[i], accuracy[i], = AAVQESimulation(nqubits, Depth[i],
+                                                    iter, T, seed, method)
 
     else:
         for i in range(nstep):
             accuracy[i], time [i] = MinimizationTest(nqubits, Depth[i],
                                                      varlayer, method, seed, ntrials)
-
-        if (os.path.isdir(dir)==False):
-            os.mkdir(dir)
+    if (os.path.isdir(dir)==False):
+        os.mkdir(dir)
         
     nQubitStr=str(nqubits)
     MethodStr=str(method)
-    file=open(dir+"/"+MethodStr+nQubitStr+"qubits.txt", "w")
+    if aavqe:
+        file=open(dir+"/"+MethodStr+nQubitStr+"qubitsAAVQE.txt", "w")
+    else:
+        file=open(dir+"/"+MethodStr+nQubitStr+"qubits.txt", "w")
+        
     file.write("nLayers\ttime\taccuracy\n")
     for i in range(len(time)):
             file.write(str(Depth[i]))

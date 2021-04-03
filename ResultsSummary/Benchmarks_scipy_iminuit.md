@@ -1,4 +1,4 @@
-# Benchmarks
+# VQE Benchmarks
 
 ## Scipy and iMinuit minimizers 
 
@@ -65,6 +65,20 @@ cma convergence to best:
 <img src="images/2lay6qub.png"  width="800"/>
 we see that accuracy increases if the algorithm finds it's way to the best earlier, without oscillating around a fixed value as in 4 qubits 4 layers.
 note that running the same algorithm different times may produce a bit different output.
+
+(performed locally)
+
+#AAVQE 
+
+
+We now perform an Adiabatically Assisted VQE as explained in [Addressing hard classical problems with Adiabatically Assisted Variational Quantum Eigensolvers](https://arxiv.org/abs/1806.02287v1).
+
+We repeat the simulation with different minimization algorithms for VQE optimization during adiabatic discretic evolution.
+
+(performed on Galileo, 1cpu per task, 1 thread set in qibo)
+
+
+
 
 
 

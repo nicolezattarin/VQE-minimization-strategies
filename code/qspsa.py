@@ -9,7 +9,7 @@ class qSPSA (object):
     """
 
     def __init__ (self, circuit, hamiltonian,
-                  epsilon=1e-2, maxiter=1e4, eta=1e-3):
+                  epsilon=1e-1, maxiter=1e4, eta=10):
         self.circuit = circuit
         self.hamiltonian = hamiltonian
         self.eps = epsilon
@@ -33,6 +33,7 @@ class qSPSA (object):
         Udag = U.invert()
         
         while (iter < self.maxiter):
+        #np.linalg.norm(oldparams-params)/np.linalg.norm(oldparams)>1e-8 and
             # The optimisation carried out until the solution has converged, or
             # the maximum number of itertions has been reached.
             
@@ -46,11 +47,13 @@ class qSPSA (object):
 
             # define the state
             U.set_parameters(params)
-            overlap = callbacks.Overlap(np.zeros(2**nqubits))
+            # define state |0> that is the bra for overlap
+            state0=np.zeros(2**nqubits)
+            state0[0]=1
+            overlap = callbacks.Overlap(state0)
 
             Udag.set_parameters(params+self.eps*delta1+self.eps*delta2)
             c1 = Udag + U
-            print(c1.summary())
             c1.add(gates.CallbackGate(overlap))
             c1()
             Udag.set_parameters(params+self.eps*delta1)
@@ -78,12 +81,10 @@ class qSPSA (object):
             else:
                 g = -(1./6.) * (deltaF/self.eps**2) * np.dot(delta1,delta2) * np.dot(delta2,delta1)
                 G = 1/(iter+1) * (iter * oldG + g)
-            
-            #AGGIUNGI AGGIONAMENTO DI G
-            
+                        
             # calculate gradient with first-order SPSA
             
-            gradf = 0.5 * (1/self.eps)*(lossf(oldparams+self.eps*delta, self.hamiltonian, self.circuit)+ lossf(oldparams-self.eps*delta, self.hamiltonian, self.circuit) )*delta
+            gradf = 0.5 * (1/self.eps)*(lossf(oldparams+self.eps*delta, self.hamiltonian, self.circuit)- lossf(oldparams-self.eps*delta, self.hamiltonian, self.circuit) )*delta
             
             # update
             params = oldparams - self.eta * G * gradf
