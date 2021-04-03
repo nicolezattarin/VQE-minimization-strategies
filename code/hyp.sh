@@ -7,4 +7,4 @@
 
 export CUDA_VISIBLE_DEVICES=""
 
-./hyperopt.py --nTrials 10000
+./hyperopt.py --nTrials 100
