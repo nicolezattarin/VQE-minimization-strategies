@@ -10,7 +10,7 @@ from qibo import gates, models, hamiltonians
 import tensorflow as tf
 qibo.set_threads(1)
 
-nqubits=4
+nqubits=2
 nlayers=2
 
 StartTime = time.time()

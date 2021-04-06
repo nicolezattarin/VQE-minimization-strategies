@@ -15,9 +15,10 @@ We benchmark different minimization algorithm taken from [scipy.optimize.minimiz
 The configuration is repeated for a different number of layers and the input parameters are chosen randomly from 0 to 2pi in all benchmarks.
 
 
-<img src="images/4q.png"  width="400" class="center"/>  <img src="images/6q.png"  width="400" class="center"/>
+<img src="images/4q.png"  width="3000"/>  
+<img src="images/6q.png"  width="3000" />
 
-<img src="images/8q.png"  width="400" class="center"/> 
+<img src="images/8q.png"  width="3000"/> 
 
 
 Accuracy is plotted with the same limits on y axis, in order to better compare different circuits with different number of qubits. 
@@ -77,8 +78,16 @@ We repeat the simulation with different minimization algorithms for VQE optimiza
 
 (performed on Galileo, 1cpu per task, 1 thread set in qibo)
 
+<img src="images/4qubitsAAVQE.png"  width="4000"/>
+<img src="images/6qubitsAAVQE.png"  width="4000"/>
 
 
+We now test it with Total_time=1 and different number of iterations:
+(locally)
+
+<img src="images/2lay4qubitsAAVQE.png"  width="4000"/>
+<img src="images/4lay4qubitsAAVQE.png"  width="4000"/>
+<img src="images/6lay4qubitsAAVQE.png"  width="4000"/>
 
 
 
