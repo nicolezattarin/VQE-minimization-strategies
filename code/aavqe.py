@@ -7,22 +7,23 @@ import logging
 import logging.handlers
 from qibo.abstractions import hamiltonians
 from qibo.evolution import StateEvolution
+logging.basicConfig(level=logging.NOTSET)
 
 
 class AAVQE(StateEvolution):
 
     """This class implements the Adiabatically Assisted Variational Quantum Eigensolvers
- algorithm.
+ algorithm. See https://arxiv.org/abs/1806.02287
     Args:
-        - circuit (:class:`qibo.abstractions.circuit.AbstractCircuit`): The variaional ansatz.
-        - in_hamiltonian (:class:`qibo.hamiltonians.Hamiltonian`): easy hamiltonian.
-        - fin_hamiltonian (:class:`qibo.hamiltonians.Hamiltonian`): problem hamiltonian.
-        - scheduling_func (callable): Function of time that defines the scheduling of the
+        circuit (:class:`qibo.abstractions.circuit.AbstractCircuit`): The variaional ansatz.
+        in_hamiltonian (:class:`qibo.hamiltonians.Hamiltonian`): easy hamiltonian.
+        fin_hamiltonian (:class:`qibo.hamiltonians.Hamiltonian`): problem hamiltonian.
+        scheduling_func (callable): Function of time that defines the scheduling of the
             adiabatic evolution. Note that in this implmentation parameterized scheeduling
             fucntions are not allowd.
-        - dt (float): Time step to use for the numerical integration of
+        dt (float): Time step to use for the numerical integration of
             Schrondiger's equation.
-        - total time (float): total time of time evolution.
+        total time (float): total time of time evolution.
 
     """
     def __init__(self, circuit, in_hamiltonian,
@@ -62,10 +63,10 @@ class AAVQE(StateEvolution):
         ATOL = 1e-7 # Tolerance for boundary condittions.
         s0 = func(0)
         if np.abs(s0) > self.ATOL:
-            raise_error(ValueError, func"s(0) should be 0 but is {s0}.")
+            raise_error(ValueError, "s(0) should be 0 but is {s0}.")
         s1 = func(1)
         if np.abs(s1 - 1) > self.ATOL:
-            raise_error(ValueError, func"s(1) should be 1 but is {s1}.")
+            raise_error(ValueError, "s(1) should be 1 but is {s1}.")
         self._schedule = func
 
     def Hamiltonian(self, t):
@@ -97,11 +98,11 @@ class AAVQE(StateEvolution):
         """
         Performs minimization to find the ground state
         Args:
-            - params (np.ndarray): Initial guess for the variational parameters.
-            - method (str): Name of optimizer to use. Default is scipy's trust-constr,
+            params (np.ndarray): Initial guess for the variational parameters.
+            method (str): Name of optimizer to use. Default is scipy's trust-constr,
                             since from benchmarks it seems to be the most accurate one
                             for 4-8 qubits circuits.
-            - options (dictionary): additional settings.
+            options (dictionary): additional settings.
         """
         
         # We first create a Hamiltonian suited for adiabatic evolution:
@@ -125,7 +126,6 @@ class AAVQE(StateEvolution):
                                             options=options, compile=False)
                
             # setup logger
-            logging.basicConfig(level=logging.NOTSET)
             logging.info("Time "+ str(t)+ " terminated with value "+ str(best)+
                          "\n\t  scheduling function "+str(s) + "\nparams \n"+ str(finparams))
 
