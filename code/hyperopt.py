@@ -14,7 +14,7 @@ import sqlite3
 import logging
 import sys
 
-qibo.set_threads(48)
+qibo.set_threads(1)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--nTrials", default=1000, help="Number of trials for optuna optimization.", type=int)
@@ -40,7 +40,7 @@ If hyperopt: 'genetic' hyperparameters are:
 
 
 
-def objectiveGenetic(trial, nqubits, nlayers): # myVQE is an object from the class myVQE
+def objectiveGenetic(trial, nqubits, nlayers):
     """
     Objective function for multi-objective optimization:
     we want to solve the trade off between time (to minimize) and accuracy (to maximize)
