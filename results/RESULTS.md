@@ -53,7 +53,7 @@ CG (4 qubits, 4layers):
 
 <img src="images/cg_4q_gif.gif"  width="500"/>  
 
-##CMA and genetic
+## CMA and genetic
 
 ### CMA
 We test CMA optimizer implemented in Qibo on a 4 qubits circuit, first without extra options and then with a 1e-4 tolerance while the default one is 1e-11, in order to find the proper trade off between time and accuracy.
