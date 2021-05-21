@@ -1,5 +1,0 @@
-best trial params: {'eps': 0.00011418944186224682, 'eta': 0.5521664921728746} value: [-inf]
-best trial params: {'eps': 7.059463156294235e-05, 'eta': 0.40864209229489795} value: [-inf]
-best trial params: {'eps': 1.1866787454047685e-05, 'eta': 0.4829568016233507} value: [-inf]
-best trial params: {'eps': 2.5720320802152195e-05, 'eta': 0.47770123940130904} value: [-inf]
-best trial params: {'eta': 0.5034277255642668, 'eps': 3.3344829190315515e-05} value: [-inf]
