@@ -5,7 +5,7 @@
 Quantum computers aim to solve problems with high computational costs, which are impossible for classical computers to approach. Nevertheless noise and decoherence are major problems on near term quantum devices. 
 To overcome such issues Variational quantum algorithms are considered. These methods are quantum-classical hybrid optimization schemes that employ a classical minimizer to train a parametrized multiple-layer quantum circuit. 
 
-##VQE minimization problem
+## VQE minimization problem
 
 My analysys focuses on the role played by optimizers during this procedure. I aim to find the family of minimizers that best suit different QML problems and to verify the role of entanglement. To do so I approach different strategies of minimization: quasi-Newton methods, heuristic techniques, hyperparameter optimization, stochastic approximation and adiabatic evolution. 
 
@@ -13,7 +13,7 @@ Therefore, with the code provided in this directory, I test different algorithms
 
 The results reached with this previous analysis are the basis to approach the problem of minimization in a Quantum Binary Classifier. Indeed I'm a collaborator of a project that aims to provide a quantum variational binary classifier (not public atm).
 
-###Variational ansatz
+### Variational ansatz
 
 Consider a variational circuit where every layer is made up by RY rotations followed by a layer of CZ gates in order to entangle the qubits, as shown in this figure: 
 
@@ -25,3 +25,4 @@ Since it's possible to evaluate the minimum eigenvalue of an hamiltonian in Qibo
 ### A taste of results
 
 All the results are discussed in [RESULTS](https://github.com/nicolezatta/VQE-minimization-strategies/blob/main/results/RESULTS.md), but in order to arouse your interest I want to giva an overview of the possible results.
+
