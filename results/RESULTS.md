@@ -3,7 +3,7 @@ We test minimization algorithm and approaches on the VQE problem. Here we presen
 
 Consider a variational circuit where every layer is made up by RY rotations followed by a layer of CZ gates in order to entangle the qubits, as shown in this figure: 
 
-<img src="results/images/varlayer.png"  width="300" class="center"/>
+<img src="images/varlayer.png"  width="300" class="center"/>
 
 We perform a VQE minimization, based on the previous circuit, using [qibo.models.VQE](https://qibo.readthedocs.io/en/stable/qibo.html#qibo.models.VQE.minimize) to find the ground state of a Heisenberg XXZ hamiltonian. 
 Since it's possible to evaluate the minimum eigenvalue of an hamiltonian in Qibo, we can comprare the results of VQE minimization with the expected value.  So we will measure accuracy for different minimization algorithms, where we refer to accuracy as: log(1/eps), eps is the gap | result-expected |.
