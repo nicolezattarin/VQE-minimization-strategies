@@ -53,7 +53,7 @@ CG (4 qubits, 4layers):
 
 <img src="images/cg_4q_gif.gif"  width="500"/>  
 
-##CMA and genetic
+## CMA and genetic
 
 ### CMA
 We test CMA optimizer implemented in Qibo on a 4 qubits circuit, first without extra options and then with a 1e-4 tolerance while the default one is 1e-11, in order to find the proper trade off between time and accuracy.
@@ -133,7 +133,7 @@ We then implemented an optimizer based on pure hyproptimization with Optuna. Wit
 
 It's clear that this method doesn't converge to the right solution. In general increasing the number of trials should bring to better performance, because of the aleatory nature of the algorithm. But notice that, after thousand of trials, the best trial ever becomes almost constant.
 
-##AAVQE 
+## AAVQE 
 
 
 We now perform an Adiabatically Assisted VQE as explained in [Addressing hard classical problems with Adiabatically Assisted Variational Quantum Eigensolvers](https://arxiv.org/abs/1806.02287v1)
