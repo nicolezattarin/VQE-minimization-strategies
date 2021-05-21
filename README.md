@@ -39,14 +39,19 @@ Since it's possible to evaluate the minimum eigenvalue of an hamiltonian in Qibo
 
 All the results are discussed in [RESULTS](https://github.com/nicolezatta/VQE-minimization-strategies/blob/main/results/RESULTS.md), but in order to arouse your interest I want to giva an overview of the possible results.
 
+### Hardware resources 
+
+- **[Unimi's LCM cluster](https://lcm.mi.infn.it/il-laboratorio/la-struttura/)** 
+- **Montblanc private server:**  64 threads and 125 GB RAM 
+
+### Examples of plots
+
 For instance the plot below provides a simple benchmark of Scipy's minimizers and Migrad on a 4 qubits. circuit:
 
-<img src="results/images/4q.png"  width="1000"/>  
+<img src="results/images/4q.png"  width="800"/>  
 
 I'm also interested in studying the evolution of parameters (thus of states) during minimization, for example the QSphere below shows the evolution of the state toward the ground state for trust-constr algorithm:
 
 
-
 <img src="results/images/trust-constr_4q_gif.gif"  width="400"/>  
-
 
