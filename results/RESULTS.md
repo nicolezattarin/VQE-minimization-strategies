@@ -41,6 +41,7 @@ Note: simulation performed on Galileo (1 thread)
 We can also investigate how parameters evolution through minimization looking at the evolution of the corresponding state on a QSphere. The final state is obviously the ground state of the hamiltonian that encodes our problem.
 
 trust-constr (4 qubits, 4layers):
+
 <img src="images/trust-constr_4q_gif.gif"  width="500"/>  
      
 Powell (4 qubits, 4layers):
