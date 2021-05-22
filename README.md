@@ -16,24 +16,27 @@ The results reached with this previous analysis are the basis to approach the pr
 
 ### Variational ansatz
 
-Consider a variational circuit where every layer is made up by RY rotations followed by a layer of CZ gates in order to entangle the qubits, as shown in this figure: 
+Let me consider a variational circuit where every layer is made up by RY rotations followed by a layer of CZ gates in order to entangle the qubits, as shown in the figure below: 
 
 <img src="results/images/varlayer.png"  width="300" class="center"/>
 
-We perform a VQE minimization, based on the previous circuit, using [qibo.models.VQE](https://qibo.readthedocs.io/en/stable/qibo.html#qibo.models.VQE.minimize) to find the ground state of a Heisenberg XXZ hamiltonian. 
-Since it's possible to evaluate the minimum eigenvalue of an hamiltonian in Qibo, we can comprare the results of VQE minimization with the expected value.  So we will measure accuracy for different minimization algorithms, where we refer to accuracy as: log(1/eps), eps is the gap | result-expected |.
+I test a VQE minimization, based on the previous circuit, using [qibo.models.VQE](https://qibo.readthedocs.io/en/stable/qibo.html#qibo.models.VQE.minimize) to find the ground state of the XXZ hamiltonian of the Heisenberg's problem. 
+Since it's possible to evaluate the minimum eigenvalue of an hamiltonian in Qibo, we can comprare the results of VQE minimization with the expected value.  So I measure the accuracy for different minimization algorithms, where I refer to accuracy as the quantity: log(1/eps), eps is the gap between the expected result and the 'experimental' one.
 
 ## Tested approaches
 
-- **Scipy's algorithms:** 
-- **IMinuit:** 
-- **CMA:** 
-- **Genetic algorithms:** 
-- **Hyperoptimization as pure optimizer:** 
-- **Adiabatically Assisted VQE:** 
-- **Simultaneous perturbation stochastic approximation:** 
-- **Training a single layer at a time:**
-- **Stochastic gradient descent:**
+- **Scipy's algorithms:** they don't need presentations, they're the optimizers implemented in Scipy, see [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize) for details;
+- **iMinuit:** a Python interface for the Minuit2 C++ library maintained by CERN’s ROOT team;
+- **CMA:** covariance matrix adaptation evolution strategy (CMA-ES) implemented in Python 
+- **Genetic algorithms:** my own implementation (see [genetic](https://github.com/nicolezatta/VQE-minimization-strategies/blob/main/optimizers/genetic.py)) with [Deap](https://deap.readthedocs.io/en/master/) of a genetic approach to minimization;
+- **Hyperoptimization as pure optimizer:** an implementation of an optimizer that uses a hyperoptimization approach with [Optuna](https://optuna.org);
+- **Adiabatically Assisted VQE:** a strategy for parameters training based on repeating VQE's minimization throughout an adiabatic evolution. VQE is first performed on a simple, well known, hamiltonian; then this hamiltonian gradually evolutes to the one of the problem. At each step VQE is performed and the output parameters become the starting parameters of the next minimization;
+- **Simultaneous perturbation stochastic approximation:** known as [SPSA](https://www.jhuapl.edu/spsa/), is an optimizer based on gradient approximation that requires only two objective function measurements per iteration;
+- **Training a single layer at a time:** a strategy in which I freeze the whole circuit, exception made from just one layer and then VQE starts. VQE's minimization is reapeated for every layer of the circuit and then again from the first layer to the last one, until convergence is reached;
+- **Stochastic gradient descent:** the well known [TensorFlow's optimizers](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers).
+
+## Repository organization
+
 
 ## A taste of results
 
@@ -48,10 +51,13 @@ All the results are discussed in [RESULTS](https://github.com/nicolezatta/VQE-mi
 
 For instance the plot below provides a simple benchmark of Scipy's minimizers and Migrad on a 4 qubits. circuit:
 
-<img src="results/images/4q.png"  width="800"/>  
+<p align="center">
+	<img src="results/images/4q.png"  width="1000"/>  
+</p>
 
 I'm also interested in studying the evolution of parameters (thus of states) during minimization, for example the QSphere below shows the evolution of the state toward the ground state for trust-constr algorithm:
 
 
-<img src="results/images/trust-constr_4q_gif.gif"  width="400"/>  
-
+<p align="center">
+	<img src="results/images/trust-constr_4q_gif.gif"  width="300"/>  
+</p>
