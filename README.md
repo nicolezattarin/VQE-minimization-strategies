@@ -23,7 +23,7 @@ Let me consider a variational circuit where every layer is made up by RY rotatio
 I test a VQE minimization, based on the previous circuit, using [qibo.models.VQE](https://qibo.readthedocs.io/en/stable/qibo.html#qibo.models.VQE.minimize) to find the ground state of the XXZ hamiltonian of the Heisenberg's problem. 
 Since it's possible to evaluate the minimum eigenvalue of an hamiltonian in Qibo, we can comprare the results of VQE minimization with the expected value.  So I measure the accuracy for different minimization algorithms, where I refer to accuracy as the quantity: log(1/eps), eps is the gap between the expected result and the 'experimental' one.
 
-## Tested approaches
+## Strategies employed 
 
 - **Scipy's algorithms:** they don't need presentations, they're the optimizers implemented in Scipy, see [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html#scipy.optimize.minimize) for details;
 - **iMinuit:** a Python interface for the Minuit2 C++ library maintained by CERN’s ROOT team;
@@ -34,6 +34,7 @@ Since it's possible to evaluate the minimum eigenvalue of an hamiltonian in Qibo
 - **Simultaneous perturbation stochastic approximation:** known as [SPSA](https://www.jhuapl.edu/spsa/), is an optimizer based on gradient approximation that requires only two objective function measurements per iteration;
 - **Training a single layer at a time:** a strategy in which I freeze the whole circuit, exception made from just one layer and then VQE starts. VQE's minimization is reapeated for every layer of the circuit and then again from the first layer to the last one, until convergence is reached;
 - **Stochastic gradient descent:** the well known [TensorFlow's optimizers](https://www.tensorflow.org/api_docs/python/tf/keras/optimizers).
+
 
 ## Repository organization
 
@@ -60,10 +61,9 @@ VQE-minimization-strategies
 │   │	RESULTS.md
 │   
 └───tuners
-│   │	architecture_tuner.py
-│   │	spsa_tuner.py
-│   │	genetic_tuner.py
-
+    │	architecture_tuner.py
+    │	spsa_tuner.py
+    │	genetic_tuner.py
 ```
 ## A taste of results
 
