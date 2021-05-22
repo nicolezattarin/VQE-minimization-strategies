@@ -37,7 +37,34 @@ Since it's possible to evaluate the minimum eigenvalue of an hamiltonian in Qibo
 
 ## Repository organization
 
+```
+VQE-minimization-strategies
+│   AAVQE.py  
+│   LICENSE   
+│   README.md  
+│   ansatz.py    
+│   main.py    
+│   myvqe.py    
+│   parameters_evolution.py    
+│   tester.py    
+│   traininglyer.py    
+│
+└───optimizers
+│   │	genetic.py
+│   │	optimizer.py
+│   │	pso.py
+│   │	spsa.py
+│
+└───results
+│   │	/images
+│   │	RESULTS.md
+│   
+└───tuners
+│   │	architecture_tuner.py
+│   │	spsa_tuner.py
+│   │	genetic_tuner.py
 
+```
 ## A taste of results
 
 All the results are discussed in [RESULTS](https://github.com/nicolezatta/VQE-minimization-strategies/blob/main/results/RESULTS.md), but in order to arouse your interest I want to giva an overview of the possible results.
@@ -46,6 +73,7 @@ All the results are discussed in [RESULTS](https://github.com/nicolezatta/VQE-mi
 
 - **[Unimi's LCM cluster](https://lcm.mi.infn.it/il-laboratorio/la-struttura/)** 
 - **Montblanc private server:**  64 threads and 125 GB RAM 
+- **Local:** 2.3 GHz Quad-Core Intel Core i5
 
 ### Examples of plots
 
