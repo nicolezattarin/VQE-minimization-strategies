@@ -1,5 +1,6 @@
 
 # VQE minimization strategies
+Nicole Zattarin [*University of Milan*]
 
 **Introduction**
 
