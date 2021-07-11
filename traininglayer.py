@@ -80,10 +80,11 @@ class SingleLayerOptimize():
                     method =="hyperopt" or method =="isres" or\
                     method == "ags" or method =="pso" or method =="shgo":
                     best, parameters = optimizer.optimize(self.loss, varparams,
-                                                            args =(self.hamiltonian, self.circuit),
+                                                            args =(fixed_right, fixed_left,
+                                                            self.hamiltonian, self.circuit),
                                                             method=method)
 
-                else
+                else:
                     best, bestparams = optimizers.optimize(self.loss, varparams,
                                                                     args=(fixed_right, fixed_left,
                                                                     self.hamiltonian, self.circuit),
@@ -103,11 +104,12 @@ class SingleLayerOptimize():
                 method == "spsa" or  method =="bipop" or \
                 method =="hyperopt" or method =="isres" or\
                 method == "ags" or method =="pso" or method =="shgo":
-                best, parameters = optimizer.optimize((self.loss, varparams,
-                                                        args=(self.hamiltonian, self.circuit),
+                best, parameters = optimizer.optimize(self.loss, varparams,
+                                                        args=(fixed_right, fixed_left,
+                                                        self.hamiltonian, self.circuit),
                                                         method=method)
 
-            else
+            else:
                 best, bestparams = optimizers.optimize(self.loss, varparams,
                                                                 args=(fixed_right, fixed_left,
                                                                 self.hamiltonian, self.circuit),
