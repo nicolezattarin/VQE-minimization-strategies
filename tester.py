@@ -186,17 +186,6 @@ def singlelayer_simulation (nqubits, nlayers, seed, method):
                                 params_per_layer, nlayers)
                                 
     best, params = mytrain.minimize(params, method=method)
-
-
-    elif method=="spsa":
-        options={'eta':0.4,
-                 'eps':1e-4,
-                 'maxiter':10000,
-                 'etacorrection':None,
-                 'alpha':0.101,
-                 'gamma': 0.602 ,
-                 'precision': 1e-10}
-        Best, Params = _VQE.minimize(params, method=method, options=options)
         
 
     expected=np.real(np.min(h.eigenvalues().numpy()))
