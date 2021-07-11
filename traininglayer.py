@@ -35,7 +35,7 @@ class SingleLayerOptimize():
         
     """
     
-    def __init__ (self, hamiltonian, circuit, params_per_layer, nlayers):
+    def __init__ (self, hamiltonian, circuit, params_per_layer, nlayers, options=None):
     
         self.circuit = circuit
         self.hamiltonian = hamiltonian
@@ -79,10 +79,10 @@ class SingleLayerOptimize():
                     method == "spsa" or  method =="bipop" or \
                     method =="hyperopt" or method =="isres" or\
                     method == "ags" or method =="pso" or method =="shgo":
-                    best, parameters = optimizer.optimize(self.loss, varparams,
+                    best, bestparams = optimizer.optimize(self.loss, varparams,
                                                             args =(fixed_right, fixed_left,
                                                             self.hamiltonian, self.circuit),
-                                                            method=method)
+                                                            method=method, options = options)
 
                 else:
                     best, bestparams = optimizers.optimize(self.loss, varparams,
@@ -104,10 +104,10 @@ class SingleLayerOptimize():
                 method == "spsa" or  method =="bipop" or \
                 method =="hyperopt" or method =="isres" or\
                 method == "ags" or method =="pso" or method =="shgo":
-                best, parameters = optimizer.optimize(self.loss, varparams,
+                best, bestparams = optimizer.optimize(self.loss, varparams,
                                                         args=(fixed_right, fixed_left,
                                                         self.hamiltonian, self.circuit),
-                                                        method=method)
+                                                        method=method, options = options)
 
             else:
                 best, bestparams = optimizers.optimize(self.loss, varparams,

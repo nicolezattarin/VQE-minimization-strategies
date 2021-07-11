@@ -184,8 +184,19 @@ def singlelayer_simulation (nqubits, nlayers, seed, method):
     
     mytrain=SingleLayerOptimize(h, circuit,
                                 params_per_layer, nlayers)
-                                
-    best, params = mytrain.minimize(params, method=method)
+
+
+    if method=="spsa":
+        options={'eta':0.4,
+                 'eps':1e-4,
+                 'maxiter':10000,
+                 'etacorrection':None,
+                 'alpha':0.101,
+                 'gamma': 0.602 ,
+                 'precision': 1e-10}
+        best, params = mytrain.minimize(params, method=method, options=options)
+    else:
+        best, params = mytrain.minimize(params, method=method)
         
 
     expected=np.real(np.min(h.eigenvalues().numpy()))
