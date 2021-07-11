@@ -60,6 +60,8 @@ class SingleLayerOptimize():
         returns: best, params
         """
         from qibo import optimizers
+        sys.path.insert(0, os.path.abspath("optimizers"))
+        import optimizer
 
         oldparams = params*100
 
@@ -73,10 +75,19 @@ class SingleLayerOptimize():
                 varparams = params[ ( self.params_per_layer * (i-1) ):\
                                     ( self.params_per_layer * (i) ) ]
                 
-                best, bestparams = optimizers.optimize(self.loss, varparams,
-                                                                 args=(fixed_right, fixed_left,
-                                                                 self.hamiltonian, self.circuit),
-                                                                 method=method)
+                if  method == "migrad" or method == "genetic" or\
+                    method == "spsa" or  method =="bipop" or \
+                    method =="hyperopt" or method =="isres" or\
+                    method == "ags" or method =="pso" or method =="shgo":
+                    best, parameters = optimizer.optimize((self.loss, varparams,
+                                                            args=(self.hamiltonian, self.circuit),
+                                                            method=method)
+
+                else
+                    best, bestparams = optimizers.optimize(self.loss, varparams,
+                                                                    args=(fixed_right, fixed_left,
+                                                                    self.hamiltonian, self.circuit),
+                                                                    method=method)
                                                                  
                 params = np.concatenate((fixed_left, bestparams, fixed_right))
                 logging.info("\nTraining layer " + str(i) + " terminated with vlue: " + str(best) +\
@@ -88,10 +99,19 @@ class SingleLayerOptimize():
             varparams = params[self.nlayers*self.params_per_layer:]
 
 
-            best, bestparams = optimizers.optimize(self.loss, varparams,
-                                                             args=(fixed_right, fixed_left,
-                                                             self.hamiltonian, self.circuit),
-                                                             method=method)
+            if  method == "migrad" or method == "genetic" or\
+                method == "spsa" or  method =="bipop" or \
+                method =="hyperopt" or method =="isres" or\
+                method == "ags" or method =="pso" or method =="shgo":
+                best, parameters = optimizer.optimize((self.loss, varparams,
+                                                        args=(self.hamiltonian, self.circuit),
+                                                        method=method)
+
+            else
+                best, bestparams = optimizers.optimize(self.loss, varparams,
+                                                                args=(fixed_right, fixed_left,
+                                                                self.hamiltonian, self.circuit),
+                                                                method=method)
             params = np.concatenate((fixed_left, bestparams, fixed_right))
             logging.info("\nTraining final parameters terminated with vlue: " + str(best) +\
                              "\nparams:\n" + str(params))
