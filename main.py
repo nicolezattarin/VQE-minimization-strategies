@@ -28,7 +28,7 @@ parser.add_argument("--varlayer", default=False, help="Use VariationalLayer gate
 parser.add_argument("--method", default="Powell", help="Method of minimization.", type=str)
 parser.add_argument("--seed", default=0, help="seed for initial parameters.", type=int)
 parser.add_argument("--ntrials", default=10000, help="trials for hyperopt minimization.", type=int)
-parser.add_argument("--training", default="vqe", help="Choose between aavqe, normal vqe and singlelayer training.", type=str)
+parser.add_argument("--training", default="vqe", help="Choose between aavqe, vqe and singlelayer training.", type=str)
 
 
 
@@ -67,7 +67,7 @@ def main  (nqubits,
     
     if training != "aavqe" and training != "singlelayer" and\
         training !="vqe":
-        raise NameError("{} is not a valid option for training".format(method))
+        raise NameError("{} is not a valid option for training".format(training))
 
         
     if training == "aavqe":
