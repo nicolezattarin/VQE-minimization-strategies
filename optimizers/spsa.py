@@ -63,7 +63,7 @@ class SPSA (object):
              - args (tuple): optional, arguments of loss function.
         """
     
-        etaTarget = self.eta
+        etaTarget = 
         eps0 = self.eps
         deltaloss = 0
         for i in range(stat):
@@ -74,7 +74,6 @@ class SPSA (object):
             lossplus = loss(paramsplus, *args)
             lossmin = loss(paramsmin, *args)
             deltaloss += np.abs(lossplus - lossmin) / stat
-        # only calibrate if deltaloss is larger than 0
         if deltaloss > 0:
             self.eta = etaTarget * 2 / deltaloss \
                         * self.eps * (self.etacorrection + 1)
