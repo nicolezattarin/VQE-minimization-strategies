@@ -63,7 +63,7 @@ class SPSA (object):
              - args (tuple): optional, arguments of loss function.
         """
     
-        etaTarget = 
+        etaTarget = self.eta
         eps0 = self.eps
         deltaloss = 0
         for i in range(stat):
