@@ -30,7 +30,7 @@ class SPSA (object):
     """
 
     def __init__ (self, options = None):
-        default_options={'eta':0.4,'eps': 1e-1,
+        default_options={'eta':2 * np.pi * 0.1,'eps': 1e-4,
                  'maxiter':10000,'etacorrection':0,
                  'alpha':0.101, 'gamma': 0.602 ,
                  'precision': 1e-10}
@@ -67,7 +67,8 @@ class SPSA (object):
         eps0 = self.eps
         deltaloss = 0
         for i in range(stat):
-            delta = 2 * np.random.binomial (1,.5, len(params)) - 1
+            from qiskit.aqua import aqua_globals
+            delta = 2 * aqua_globals.random.integers(2, size=np.shape(params)[0]) - 1
             paramsplus = params + eps0 * delta
             paramsmin = params - eps0 * delta
 
@@ -77,7 +78,6 @@ class SPSA (object):
         if deltaloss > 0:
             self.eta = etaTarget * 2 / deltaloss \
                         * self.eps * (self.etacorrection + 1)
-
 
     def _gradient (self, params, loss, eps, args=()):
         """
@@ -106,9 +106,9 @@ class SPSA (object):
     def minimize (self, params,
                         loss,
                         args = (),
-                        calibration = True,
+                        calibration = False,
                         verbose = True,
-                        callback=None):
+                        callback = None):
         """
         Mimimizer to find the ground state of hamiltonian provided
         Args:
