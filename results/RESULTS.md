@@ -2,6 +2,7 @@
 We test minimization strategies the Variational Quantum Eigensolver (VQE) problem. Here we present the benchmarks results.
 
 Consider a variational circuit where every layer consists of RY rotations followed by a layer of CZ gates in order to entangle the qubits, as shown in the figure below:
+
 <img src="images/varlayer.png"  width="300" class="center"/>
 
 This same circuit has been used as ansatz for a variational quantum algorithm, implemented to benchmark the accuracy of VQE based on a finite-depth variational quantum circuit encoding ground states of local Hamiltonians, namely, the Ising and XXZ models. See [Scaling of variational quantum circuit depth for condensed matter systems](https://quantum-journal.org/papers/q-2020-05-28-272/).
@@ -47,7 +48,8 @@ A learning rate calibration is introduced, as it is discussed in [qiskit.aqua.co
 
 Here we report the contour plots of tuning, respectively for a 4-qubits, 4-layers circuit and a 4-qubits, 6-layers circuit:
 
-<img src="images/tuning/4lay4qub_contour.png"width="300"/>  <img src="images/tuning/4lay6qub_contour.png"width="300"/>  
+<img src="images/tuning/4lay4qub_contour.png"  width="300" class="center"/>
+<img src="images/tuning/4lay6qub_contour.png"  width="300" class="center"/>
 
 #### Migrad
 
@@ -59,6 +61,7 @@ It makes use of first derivatives, while it compute approximated second derivati
 
 
 Plots below show accuracy and execution time for different number of layers, for all the gradient-based algorithms taken into account. We clearly see that accuracy decreases with the number of qubits, while time generally increases both with the number of qubits and depth. Simulations are performed on Galileo, which is the more stable hardware resource available, single thread execution with one CPU per task is performed.
+
 
 <p align="center">
 	<img src="images/gradientbased_4q.png"width="600"/>  
