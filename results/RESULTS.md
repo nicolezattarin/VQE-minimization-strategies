@@ -46,7 +46,8 @@ Another gradient-based approach to minimization is the Simultaneous perturbation
 A learning rate calibration is introduced, as it is discussed in [qiskit.aqua.components.optimizers.SPSA](https://qiskit.org/documentation/_modules/qiskit/aqua/components/optimizers/spsa.html#SPSA). Before testing the algorithm, tuning of the step eps and the learning rate eta is performed, tuner available [here](https://github.com/nicolezatta/VQE-minimization-strategies/blob/main/tuners/spsatuner.py). 
 
 Here we report the contour plots of tuning, respectively for a 4-qubits, 4-layers circuit and a 4-qubits, 6-layers circuit:
-![](images/tuning/4lay4qub_contour.png)![](images/tuning/4lay6qub_contour.png)
+
+<img src="images/tuning/4lay4qub_contour.png"width="300"/>  <img src="images/tuning/4lay6qub_contour.png"width="300"/>  
 
 #### Migrad
 
@@ -59,9 +60,15 @@ It makes use of first derivatives, while it compute approximated second derivati
 
 Plots below show accuracy and execution time for different number of layers, for all the gradient-based algorithms taken into account. We clearly see that accuracy decreases with the number of qubits, while time generally increases both with the number of qubits and depth. Simulations are performed on Galileo, which is the more stable hardware resource available, single thread execution with one CPU per task is performed.
 
-![](images/gradientbased_4q.png)
-![](images/gradientbased_6q.png)
-![](images/gradientbased_8q.png)
+<p align="center">
+	<img src="images/gradientbased_4q.png"width="600"/>  
+</p>
+<p align="center">
+	<img src="images/gradientbased_6q.png"width="600"/>  
+</p>
+<p align="center">
+	<img src="images/gradientbased_8q.png"width="600"/>  
+</p>
 
 Comparing the plots provided we clearly see that as the number of qubits increases, accuracy decreases, while the required execution time becomes higher. 
 
