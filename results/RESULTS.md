@@ -63,13 +63,13 @@ Plots below show accuracy and execution time for different number of layers, for
 
 
 <p align="center">
-	<img src="images/gradientbased_4q.png"width="600"/>  
+	<img src="images/gradientbased_4q.png"width="700"/>  
 </p>
 <p align="center">
-	<img src="images/gradientbased_6q.png"width="600"/>  
+	<img src="images/gradientbased_6q.png"width="700"/>  
 </p>
 <p align="center">
-	<img src="images/gradientbased_8q.png"width="600"/>  
+	<img src="images/gradientbased_8q.png"width="700"/>  
 </p>
 
 Comparing the plots provided we clearly see that as the number of qubits increases, accuracy decreases, while the required execution time becomes higher. 
