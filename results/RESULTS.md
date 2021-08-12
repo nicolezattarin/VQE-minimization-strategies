@@ -1,9 +1,12 @@
 # VQE Benchmarks
+
 We test minimization strategies the Variational Quantum Eigensolver (VQE) problem. Here we present the benchmarks results.
 
 Consider a variational circuit where every layer consists of RY rotations followed by a layer of CZ gates in order to entangle the qubits, as shown in the figure below:
 
-<img src="images/varlayer.png"  width="300" class="center"/>
+<p align="center">
+	<img src="images/varlayer.png"width="320"/>  
+</p>
 
 This same circuit has been used as ansatz for a variational quantum algorithm, implemented to benchmark the accuracy of VQE based on a finite-depth variational quantum circuit encoding ground states of local Hamiltonians, namely, the Ising and XXZ models. See [Scaling of variational quantum circuit depth for condensed matter systems](https://quantum-journal.org/papers/q-2020-05-28-272/).
 
@@ -26,6 +29,7 @@ The configuration is repeated for a different number of layers and the input par
 
 
 ### Gradient-based methods
+
 To benchmark gradient-based algorithms on the model proposed we refer both to [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html), and to iMinuit library, [iminuit.minimize](https://iminuit.readthedocs.io/en/stable/reference.html#iminuit.minimize). The SPSA tested is implemented by us instead. To be more precise BFGS, L-BFGS, SLSQP, Trust-constr, and TNC are supported by Scipy, while migrad is offered in the Python interface for the Minuit2 C++ library, maintained by CERN’s ROOT team.
 
 #### Quasi-Newton
@@ -78,6 +82,7 @@ For a 4-qubits system, layers added after the fourth seem not to be effective: w
 
 
 ### Gradient-free methods
+
 Let us now focus on gradient-free algorithms, in this case we employ methods in [scipy.optimize.minimize](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html), that implements the following methods:
 - COBYLA: it performs the Constrained Optimization By Linear Approximation (COBYLA) method. The algorithm is based on linear approximations to the objective function and each constraint;
 - Nelder-Mead: heuristic search algorithm for multidimensional unconstrained optimization, based on the [Simplex algorithm ](https://academic.oup.com/comjnl/article-abstract/7/4/308/354237));
@@ -99,6 +104,7 @@ We conclude that derivative-free algorithms show less performances, in terms of 
 
 
 ### Genetic approach
+
 Let us now focus on the evolutionary approach to minimization, we exploit two strategies: our implementation of a GA, see code [here](https://github.com/nicolezatta/VQE-minimization-strategies/blob/main/optimizers/genetic.py), and Covariance matrix adaptation evolution strategy (CMA-ES), both with and without BIPOP option.
 
 #### Results
@@ -115,3 +121,57 @@ To better understand CMA-ES behaviour, let us focus on its way to approach the o
 <p align="center">
 	<img src="images/genetic_evolution.png"width="800"/>  
 </p>
+
+
+
+### Hyperparameters optimization
+
+Another possible strategy of minimization makes use of tuning as a pure optimizer. We implement such approach in Optuna, a hyperparameter optimization framework to automate hyperparameter search.
+
+#### Results
+Accuracy reached by hyperparameter optimizer, for different number of qubits and different depth values:
+
+<p align="center">
+	<img src="images/hyper.png"width="800"/>  
+</p>
+
+The plot shows that accuracy decreases as the number of qubits increases, while it is not affected by depth. In general accuracy is always negative, thus this approach is not a satisfying method to solve our problem.
+
+## Variations to VQE
+Finding the ground state of a given Hamiltonian is a problem that may be addressed with VQE, and with approaches that take advantage of this model into subroutines, here we test such approaches.
+
+### Adiabatically Assisted Variational Quantum Eigensolver (AAVQE)
+
+AAVQE works by applying VQE at every step of a discrete adiabatic evolution. The algorithm starts from a well-known Hamiltonian and it gradually evolve to the one of our specific problem. The whole process can be thought as a training of the parameters, since the input parameters of each step are the results of the previous minimization. For more details see [Addressing hard classical problems with Adiabatically Assisted Variational Quantum Eigensolvers](https://arxiv.org/abs/1806.02287v1). We implement a linear scheduling function.
+
+
+#### Results 
+
+The plot below shows accuracy and execution time for Scipy’s algorithms applied to AAVQE on a 4-qubits system:
+
+<p align="center">
+	<img src="images/aavqe.png"width="800"/>  
+</p>
+ Accuracy shows a behaviour similar to the one observed in classical VQE, but algorithms seems to be more stable than in the classical case. Required execution time significantly increases in comparison to the classical VQE, since multiple VQE calls are performed.
+
+
+### Training layer by layer
+
+Another possible approach to train parameters is to optimize a layer at a time, fixing the rest of the trainable elements of the ansatz. This algorithm repeats these single-layer optimization cycles until convergence is reached, thus loop stops when:
+<p align="center">
+	<img src="images/precision_formula.png"width="250"/>  
+</p>
+
+#### Results 
+Results of simulations follow:
+<p align="center">
+	<img src="images/singlelayer.png"width="800"/>  
+</p>
+
+
+
+
+
+
+
+
