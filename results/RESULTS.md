@@ -132,7 +132,7 @@ Another possible strategy of minimization makes use of tuning as a pure optimize
 Accuracy reached by hyperparameter optimizer, for different number of qubits and different depth values:
 
 <p align="center">
-	<img src="images/hyper.png"width="800"/>  
+	<img src="images/hyper.png"width="650"/>  
 </p>
 
 The plot shows that accuracy decreases as the number of qubits increases, while it is not affected by depth. In general accuracy is always negative, thus this approach is not a satisfying method to solve our problem.
@@ -159,7 +159,7 @@ The plot below shows accuracy and execution time for Scipy’s algorithms applie
 
 Another possible approach to train parameters is to optimize a layer at a time, fixing the rest of the trainable elements of the ansatz. This algorithm repeats these single-layer optimization cycles until convergence is reached, thus loop stops when:
 <p align="center">
-	<img src="images/precision_formula.png"width="250"/>  
+	<img src="images/precision_formula.png"width="300"/>  
 </p>
 
 #### Results 
