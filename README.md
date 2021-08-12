@@ -96,5 +96,5 @@ We are also interested in studying the evolution of parameters (thus of states) 
 
 
 <p align="center">
-	<img src="results/images/trust-constr_4q_gif.gif"  width="300"/>  
+	<img src="results/images/trust-constr_4q_gif.gif"  width="500"/>  
 </p>
