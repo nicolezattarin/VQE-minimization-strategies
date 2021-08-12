@@ -87,8 +87,12 @@ Let us now focus on gradient-free algorithms, in this case we employ methods in 
 #### Results
 Plots below exhibit accuracy and execution time for different number of layers, for all the gradient-free algorithms taken into account.
 
-![](images/gradientfree_4q.png)
-![](images/gradientfree_6q.png)
+<p align="center">
+	<img src="images/gradientfree_4q.png"width="800"/>  
+</p>
+<p align="center">
+	<img src="images/gradientfree_6q.png"width="800"/>  
+</p>
 
 We conclude that derivative-free algorithms show less performances, in terms of accyracy, than the derivatives-based. This result suggests that the loss function is regular enough to be optimizerd by gradient-based methods, so we do not take advantage by gradient-free methods versatility.
 
@@ -99,12 +103,15 @@ Let us now focus on the evolutionary approach to minimization, we exploit two st
 
 #### Results
 Here time and accuracy for a 4-qubits system:
-![](images/genetic_4q.png) 
+<p align="center">
+	<img src="images/genetic_4q.png"width="800"/>  
+</p>
 
 
 A first observation concerns accuracy’s irregularity for CMA-ES. Moreover the genetic algorithm implemented with Deap does not get satisfying results in any case, since accuracy is always negative. A remark on execution time must be done: genetic algorithms need more time to run than other methods already discussed. Thus, they need many computational resources and, in this case, such loss is not balanced by high performances in terms of convergence.
 
 To better understand CMA-ES behaviour, let us focus on its way to approach the optimum and reach convergence, the following plots provide such informations:
-![](images/genetic_evolution.png) 
 
-
+<p align="center">
+	<img src="images/genetic_evolution.png"width="800"/>  
+</p>
