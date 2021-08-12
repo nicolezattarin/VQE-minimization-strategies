@@ -84,9 +84,8 @@ All the results are discussed in [RESULTS](https://github.com/nicolezatta/VQE-mi
 
 For instance the plot below provides a simple benchmark of gradient-based algorithms on a 4-qubits circuit:
 
-<p align="center">
-	<img src="results/images/error_gradientbased_vqe.pdf"  width="1000"/>  
-</p>
+<embed src="results/images/error_gradientbased_vqe.pdf" type="application/pdf">
+
 Error bars are evaluated repeating the simulations with different seeds to generate initial parameters. Gradient-based algorithms exhibit a weak dependance by seed, the most error-affected methods are BFGS and SPSA, whose bands do not cover more than ±2.
 
 
