@@ -48,8 +48,7 @@ A learning rate calibration is introduced, as it is discussed in [qiskit.aqua.co
 
 Here we report the contour plots of tuning, respectively for a 4-qubits, 4-layers circuit and a 4-qubits, 6-layers circuit:
 
-<img src="images/tuning/4lay4qub_contour.png"  width="300" class="center"/>
-<img src="images/tuning/4lay6qub_contour.png"  width="300" class="center"/>
+<img src="images/tuning/4lay4qub_contour.png"  width="500" class="center"/><img src="images/tuning/4lay6qub_contour.png"  width="500" class="center"/>
 
 #### Migrad
 
