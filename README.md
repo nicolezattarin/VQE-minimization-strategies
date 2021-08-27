@@ -4,12 +4,12 @@ Nicole Zattarin [*University of Milan*]
 
 **Introduction**
 
-Quantum computers aim to solve problems with high computational costs, which are impossible for classical computers to approach. Nevertheless noise and decoherence are major problems on near term quantum devices. 
-To overcome such issues Variational quantum algorithms are considered. These methods are quantum-classical hybrid optimization schemes that employ a classical minimizer to train a parametrized multiple-layer quantum circuit. 
-
+Quantum computing is a computational framework that aims to provide solutions to problems with high computational costs, which are impossible for classical devices to approach. Nevertheless, noise and decoherence are major concerns on Near-Term devices.
+To overcome such issues Variational Quantum Algorithms are considered. These methods are quantum-classical hybrid optimization schemes that employ a classical minimizer to train a parameterized multiple-layer quantum circuit. The following work focuses on the role played by optimizers during this procedure. We aim to individuate which minimizers best suit different variational prob- lems.
 ## The problem 
 
-Our analysis focuses on the role played by optimizers during this procedure. We aim to find the family of minimizers that best suit different QML problems and to verify the role of entanglement. To do so we approach different strategies of minimization: quasi-Newton methods, heuristic techniques, hyperparameter optimization, stochastic approximation and adiabatic evolution. 
+Our analysis focuses on the role played by optimizers during this procedure. We aim to find the family of minimizers that best suited for a Variational Quantum Eigensolver.
+To do so we approach different strategies of minimization: Quasi-Newton methods, heuristic tech- niques, hyperparameter optimization, stochastic approximation and adiabatic evolution.
 
 Therefore, with the code provided in this directory, we test different algorithms and strategies on the well-known problem of finding the ground state of an hamiltonian with Variational Quantum Eigensolver. Simulations of quantum algorithms on classical devices are performed with [Qibo](https://github.com/qiboteam/qibo), a framework for quantum simulation.
 
