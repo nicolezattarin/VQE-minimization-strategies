@@ -153,9 +153,10 @@ The plot below shows accuracy and execution time for Scipy’s algorithms applie
 	<img src="images/aavqe.png"width="800"/>  
 </p>
  Accuracy shows a behaviour similar to the one observed in classical VQE, but algorithms seems to be more stable than in the classical case. Required execution time significantly increases in comparison to the classical VQE, since multiple VQE calls are performed.
-
+ 
 
 ### Training layer by layer
+
 
 Another possible approach to train parameters is to optimize a layer at a time, fixing the rest of the trainable elements of the ansatz. This algorithm repeats these single-layer optimization cycles until convergence is reached, thus loop stops when:
 <p align="center">
@@ -168,6 +169,34 @@ Results of simulations follow:
 	<img src="images/singlelayer.png"width="800"/>  
 </p>
 
+
+
+## Seed dependance 
+All the results previously shown refer to initial parameters generated with seed 0. We perform the same simulations, for a 4-qubits system, with different seeds, in order to obtain an error band for each algorithm. 
+
+The plot below shows accuracy of different algorithms in average for a 4-qubits system, the corresponding error bars are provided. Error bars are evaluated repeating the simulations with different seeds to generate initial parameters. Gradient-free methods exhibit a little dependence by the seed, while gradient-based are less stable. CMA-ES shows a peculiar behaviour, since error bars may cover an interval of almost ±7.
+
+<p align="center">
+	<img src="images/error_vqe.png"width="800"/>  
+</p>
+
+## Evolution of the state
+
+We are also interested in studying the evolution of parameters and of the corresponding states during minimization. 
+
+
+The QSphere below shows the evolution of the state toward the ground state for trust-constr algorithm:
+
+
+<p align="center">
+	<img src="images/trust-constr_4q_gif.gif"  width="400"/>  
+</p>
+
+Moreover, the same QSphere in reference to Powell's behaviour follows:
+
+<p align="center">
+	<img src="images/powell_4q_gif.gif"  width="400"/>  
+</p>
 
 
 
